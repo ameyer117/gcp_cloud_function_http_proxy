@@ -75,7 +75,7 @@ def main(request):
                     body=response.json() if 'application/json' in response.headers.get("content-type", "") else response.text,
                     elapsed_seconds=response.elapsed.total_seconds()
                 )
-                return (response_model.json(), response_model.status_code, headers)
+                return (response_model.model_dump(), response_model.status_code, headers)
 
         except httpx.RequestError as e:
             error_message = f"Request failed: {str(e)}"
